@@ -53,6 +53,30 @@ class Player():
             return 0.0
 
         return getattr(self, "total_points", 0.0) / minutes * 90.0
+    
+    @property
+    def roi(self):
+        """Players ROI using points/cost.
+
+        :rtype: float
+        """
+        
+        points = float(getattr(self, "total_points", 0))
+        cost = getattr(self, "now_cost", 0) / 10
+
+
+
+        return points/cost
+    
+    @property
+    def position(self):
+        """Shortened version of player_position.
+
+        :rtype: float
+        """
+        
+        return getattr(self, "element_type", 0.0).map(lambda x: position_dict[x])
+    
 
     @property
     async def vapm(self):
